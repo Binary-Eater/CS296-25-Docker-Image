@@ -11,7 +11,7 @@ RUN    wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=
 ENV JAVA_HOME /usr/java/jdk1.8.0_152/
 
 ENV LEIN_VERSION=2.8.1
-ENV LEIN_INSTALL=/usr/local/bin/
+ENV LEIN_INSTALL=/usr/bin/
 
 # Download the whole repo as an archive
 RUN mkdir -p $LEIN_INSTALL \
