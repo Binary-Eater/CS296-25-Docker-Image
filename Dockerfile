@@ -34,4 +34,3 @@ RUN echo '(defproject dummy "" :dependencies [[org.clojure/clojure "1.8.0"]])' >
   && lein deps && rm project.clj
 
 RUN echo '{:user {:plugins [[lein-exec "0.3.7"]]}}' > ~/.lein/profiles.clj
-RUN lein exec -e '(println "Initializing lein-exec")'
