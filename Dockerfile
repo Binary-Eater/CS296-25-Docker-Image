@@ -38,3 +38,4 @@ RUN cd /tmp/project \
   && sudo -u ag lein deps && sudo -u ag rm project.clj
 
 RUN sudo -u ag echo '{:user {:plugins [[lein-exec "0.3.7"]]}}' > /home/ag/.lein/profiles.clj
+RUN sudo -u ag lein exec -e '(println "Completed Setting Up lein-exec")'
