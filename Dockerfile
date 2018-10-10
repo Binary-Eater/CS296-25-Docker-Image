@@ -34,7 +34,7 @@ RUN chown -R ag /tmp/project
 
 # Install clojure 1.8.0 so users don't have to download it every time
 RUN cd /tmp/project \
-    && sudo -u ag echo '(defproject dummy "" :dependencies [[org.clojure/clojure "1.8.0"]])' > project.clj \
+    && sudo -u ag echo '(defproject dummy "" :dependencies [[org.clojure/clojure "1.8.0"] [org.clojure/data.json "0.2.6"]])' > project.clj \
   && sudo -u ag lein deps && sudo -u ag rm project.clj
 
 RUN sudo -u ag echo '{:user {:plugins [[lein-exec "0.3.7"]]}}' > /home/ag/.lein/profiles.clj
