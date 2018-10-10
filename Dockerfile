@@ -3,12 +3,12 @@ FROM prairielearn/centos7-base
 RUN    yum -y install epel-release \
 	&& yum -y install wget
 
-RUN    wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie; gpw_e24=http%3A%2F%2Fwww.oracle.com%2Ftechnetwork%2Fjava%2Fjavase%2Fdownloads%2Fjdk8-downloads-2133151.html" "http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe78cdb6d0/jdk-8u152-linux-x64.rpm" \
-	&& yum -y localinstall jdk-8u152-linux-x64.rpm \
-	&& rm jdk-8u152-linux-x64.rpm
+RUN    wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie; gpw_e24=https%3A%2F%2Fwww.oracle.com%2Ftechnetwork%2Fjava%2Fjavase%2Fdownloads%2Fjdk8-downloads-2133151.html;" "http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.rpm" \
+	&& yum -y localinstall jdk-8u181-linux-x64.rpm \
+	&& rm jdk-8u181-linux-x64.rpm
 
 
-ENV JAVA_HOME /usr/java/jdk1.8.0_152/
+ENV JAVA_HOME /usr/java/jdk1.8.0_181/
 
 ENV LEIN_VERSION=2.8.1
 ENV LEIN_INSTALL=/usr/bin/
@@ -22,9 +22,6 @@ RUN mkdir -p $LEIN_INSTALL \
   && chmod 0755 $LEIN_INSTALL/lein \
   && wget -q https://github.com/technomancy/leiningen/releases/download/$LEIN_VERSION/leiningen-$LEIN_VERSION-standalone.zip \
   && wget -q https://github.com/technomancy/leiningen/releases/download/$LEIN_VERSION/leiningen-$LEIN_VERSION-standalone.zip.asc \
-  && gpg --keyserver pool.sks-keyservers.net --recv-key 2B72BF956E23DE5E830D50F6002AF007D1A7CC18 \
-  && echo "Verifying Jar file signature ..." \
-  && gpg --verify leiningen-$LEIN_VERSION-standalone.zip.asc \
   && rm leiningen-$LEIN_VERSION-standalone.zip.asc \
   && mkdir -p /usr/share/java \
   && mv leiningen-$LEIN_VERSION-standalone.zip /usr/share/java/leiningen-$LEIN_VERSION-standalone.jar
