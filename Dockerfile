@@ -29,8 +29,12 @@ RUN mkdir -p $LEIN_INSTALL \
 ENV PATH=$PATH:$LEIN_INSTALL
 ENV LEIN_ROOT 1
 
-# Install clojure 1.8.0 so users don't have to download it every time
-RUN echo '(defproject dummy "" :dependencies [[org.clojure/clojure "1.8.0"]])' > project.clj \
-  && lein deps && rm project.clj
+RUN mkdir -p /tmp/project
+RUN chown -R ag /tmp/project
 
-RUN echo '{:user {:plugins [[lein-exec "0.3.7"]]}}' > ~/.lein/profiles.clj
+# Install clojure 1.8.0 so users don't have to download it every time
+RUN cd /tmp/project \
+    && sudo -u ag echo '(defproject dummy "" :dependencies [[org.clojure/clojure "1.8.0"]])' > project.clj \
+  && sudo -u ag lein deps && sudo -u ag rm project.clj
+
+RUN sudo -u ag echo '{:user {:plugins [[lein-exec "0.3.7"]]}}' > /home/ag/.lein/profiles.clj
