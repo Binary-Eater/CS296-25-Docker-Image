@@ -3,12 +3,12 @@ FROM prairielearn/centos7-base
 RUN    yum -y install epel-release \
 	&& yum -y install wget
 
-RUN    wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie; gpw_e24=https%3A%2F%2Fwww.oracle.com%2Ftechnetwork%2Fjava%2Fjavase%2Fdownloads%2Fjdk8-downloads-2133151.html;" "http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.rpm" \
-	&& yum -y localinstall jdk-8u181-linux-x64.rpm \
-	&& rm jdk-8u181-linux-x64.rpm
+RUN    wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie; gpw_e24=https%3A%2F%2Fwww.oracle.com%2Ftechnetwork%2Fjava%2Fjavase%2Fdownloads%2Fjdk8-downloads-2133151.html;" "https://download.oracle.com/otn-pub/java/jdk/8u192-b12/750e1c8617c5452694857ad95c3ee230/jdk-8u192-linux-x64.rpm" \
+	&& yum -y localinstall jdk-8u192-linux-x64.rpm \
+	&& rm jdk-8u192-linux-x64.rpm
 
 
-ENV JAVA_HOME /usr/java/jdk1.8.0_181/
+ENV JAVA_HOME /usr/java/jdk1.8.0_192/
 
 ENV LEIN_VERSION=2.8.1
 ENV LEIN_INSTALL=/usr/bin/
