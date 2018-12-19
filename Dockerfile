@@ -5,7 +5,8 @@ RUN    yum -y install epel-release \
     && yum -y install xorg-x11-server-Xvfb \
     && yum -y install fontconfig \
     && yum -y install libXrender \
-    && yum -y install libXtst
+    && yum -y install libXtst \
+    && yum -y install libXi
 
 RUN    wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie; gpw_e24=https%3A%2F%2Fwww.oracle.com%2Ftechnetwork%2Fjava%2Fjavase%2Fdownloads%2Fjdk8-downloads-2133151.html;" "https://download.oracle.com/otn-pub/java/jdk/8u192-b12/750e1c8617c5452694857ad95c3ee230/jdk-8u192-linux-x64.rpm" \
 	&& yum -y localinstall jdk-8u192-linux-x64.rpm \
