@@ -2,18 +2,7 @@ FROM prairielearn/centos7-base
 
 RUN    yum -y install epel-release \
 	&& yum -y install wget \
-    && yum -y install xorg-x11-server-Xvfb \
-    && yum -y install fontconfig \
-    && yum -y install libXrender \
-    && yum -y install libXtst \
-    && yum -y install libXi
-
-RUN    wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie; gpw_e24=https%3A%2F%2Fwww.oracle.com%2Ftechnetwork%2Fjava%2Fjavase%2Fdownloads%2Fjdk8-downloads-2133151.html;" "https://download.oracle.com/otn-pub/java/jdk/8u192-b12/750e1c8617c5452694857ad95c3ee230/jdk-8u192-linux-x64.rpm" \
-	&& yum -y localinstall jdk-8u192-linux-x64.rpm \
-	&& rm jdk-8u192-linux-x64.rpm
-
-
-ENV JAVA_HOME /usr/java/jdk1.8.0_192/
+  && yum -y install java-1.8.0-openjdk-devel
 
 ENV LEIN_VERSION=2.8.1
 ENV LEIN_INSTALL=/usr/bin/
@@ -39,7 +28,7 @@ RUN chown -R ag /tmp/project
 
 # Install clojure 1.8.0 so users don't have to download it every time
 RUN cd /tmp/project \
-    && sudo -u ag echo '(defproject dummy "" :dependencies [[org.clojure/clojure "1.8.0"] [org.clojure/data.json "0.2.6"] [quil "2.8.0"] [midje "1.6.0"]])' > project.clj \
+    && sudo -u ag echo '(defproject dummy "" :dependencies [[org.clojure/clojure "1.8.0"] [org.clojure/data.json "0.2.6"] [quil "2.8.0"] [midje "1.7.0"]])' > project.clj \
   && sudo -u ag lein deps && sudo -u ag rm project.clj
 
 RUN sudo -u ag echo '{:user {:plugins [[lein-exec "0.3.7"]]}}' > /home/ag/.lein/profiles.clj
